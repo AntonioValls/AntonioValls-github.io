@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <form action="/login" name="login" id="formLogin" class="formLogin" method="POST">
+        <h2 class="tittle_form">Iniciar sesión con su cuenta</h2>
+        <span class="input-item">
+                <p class="warnings" id="userWarnings">{{userWarnings}}</p>
+                <input type="text" class="form-input" id="user" name="user" placeholder="Nombre de usuario">
+            </span>
+        <br>
+        <span class="input-item">
+                <p class="warnings" id="passwWarnings">{{passwWarnings}}</p>
+                <input type="password" class="form-input" id="passw" name="passw" placeholder="Contraseña">
+            </span>
+        <br>
+        <span class="input-item">
+                <input type="submit" class="form-input input-submit" value="Iniciar sesión">
+        </span>
+        <br>
+        <span class="href-item">
+                <a href="register">¿No tiene una cuenta? Cree una aquí ></a>
+        </span>
+        <span>
+                <p class="warnings" id="warnings">{{warnings}}</p>
+        </span>
+    </form>
+</body>
+</html>

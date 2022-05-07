@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Generator</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <form action="/verify" method="POST">
+        <h1>Configura 2FA</h1>
+        <img name="img_qr" src="{{qr}}">
+        <p>Código 2FA</p>
+        <p>{{warnings}}</p>
+        <input type="text" name="auth_code" id="auth_code">
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

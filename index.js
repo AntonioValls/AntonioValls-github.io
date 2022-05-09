@@ -6,6 +6,7 @@ const {JsonDB} = require('node-json-db')
 const {Config} = require('node-json-db/dist/lib/JsonDBConfig')
 const nunjucks = require('nunjucks')
 const session = require('express-session')
+const cryptoJs = require('crypto-js')
 const app = express()
 const port = 5000
 
@@ -41,6 +42,7 @@ app.post('/register', (req, res) => {
     var passw = req.body.passw
     var verified = registerVerify(user,passw, res)
     if(verified){
+        const passwEncr = cryptoJs.MD5(passw)
         const path = `/user/${user}`
         if(!db.exists(path)){
             var autenticator = req.body.auth_checkbox;
@@ -72,9 +74,7 @@ app.post('/register', (req, res) => {
             }
         }
         else {
-            // console.log("el usuario ya existe")
             res.render('register.html', {userWarnings: "Ese usuario ya está en uso"})
-            // res.redirect('/register')
         }
     }
 })
@@ -110,12 +110,49 @@ app.post('/verify', (req, res) => {
             // res.redirect('/qrGenerator')
         }
     }catch (error){
-        res.status(500).json({message: 'Error en el usuario verify'})
+        res.render('login.html', {warnings: "Error en el usuario"})
+        // res.status(500).json({message: 'Error en el usuario'})
+    }
+})
+
+app.post('/verifyCode', (req, res) => {
+    var userId = req.session.user
+    var token = req.body.auth_code
+    try {
+        // Retrieve user from database
+        const path = `/user/${userId}`
+        const user = db.getData(path)
+        const { base32: secret } = user.temp_secret
+        const verified = speakeasy.totp.verify({
+            secret,
+            encoding: 'base32',
+            token
+        });
+
+        if (verified){
+            // res.redirect('/page')
+            return res.redirect('/page')
+        }
+        else{
+            // res.json({verified: false})
+            res.render('validarCodigo.html', {warnings: "El código no es correcto"})
+            // res.redirect('/qrGenerator')
+        }
+    }catch (error){
+        res.render('login.html', {warnings: "Error en el usuario"})
+        // res.status(500).json({message: 'Error en el usuario'})
     }
 })
 
 app.get('/page', (req, res) => {
-    res.render('page.html', {user: req.session.user})
+    if(req.session.user){
+        return res.render('page.html', {user: req.session.user})
+    }
+    return res.redirect('/')
+})
+
+app.get('/validarCodigo', (req, res) => {
+    res.render('validarCodigo.html')
 })
 
 app.post('/login', (req, res) => {
@@ -135,7 +172,7 @@ app.post('/login', (req, res) => {
                             throw err
                         }
                         req.session.qr = data_url
-                        res.redirect('/qrGenerator')
+                        res.redirect('/validarCodigo')
                     })
                 }
                 else{
@@ -146,6 +183,7 @@ app.post('/login', (req, res) => {
                 res.render('login.html', {warnings: "La contraseña y el usuario no coinciden"})
             }
         }catch (error){
+            console.log(passw + "----> " +cryptoJs.MD5(passw))
             res.render('login.html', {warnings: "El usuario no está registrado en la base de datos"})
             // res.status(500).json({message: 'Usuario no encontrado'})
         }

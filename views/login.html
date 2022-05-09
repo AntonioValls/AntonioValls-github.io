@@ -7,27 +7,27 @@
 </head>
 <body>
     <form action="/login" name="login" id="formLogin" class="formLogin" method="POST">
-        <h2 class="tittle_form">Iniciar sesión con su cuenta</h2>
-        <span class="input-item">
-                <p class="warnings" id="userWarnings">{{userWarnings}}</p>
-                <input type="text" class="form-input" id="user" name="user" placeholder="Nombre de usuario">
-            </span>
+        <h2 class="tittle_form">INICIAR SESIÓN</h2>
+        <div class="input-item group">
+            <p class="warnings" id="userWarnings">{{userWarnings}}</p>
+            <input type="text" class="form-input text-input" id="user" name="user" placeholder="Usuario">
+        </div>
         <br>
-        <span class="input-item">
-                <p class="warnings" id="passwWarnings">{{passwWarnings}}</p>
-                <input type="password" class="form-input" id="passw" name="passw" placeholder="Contraseña">
-            </span>
+        <div class="input-item group">
+            <p class="warnings" id="passwWarnings">{{passwWarnings}}</p>
+            <input type="password" class="form-input text-input" id="passw" name="passw" placeholder="Contraseña">
+        </div>
         <br>
-        <span class="input-item">
-                <input type="submit" class="form-input input-submit" value="Iniciar sesión">
-        </span>
+        <div class="input-item">
+            <input type="submit" class="form-input input-submit" value="Iniciar sesión">
+        </div>
         <br>
-        <span class="href-item">
-                <a href="register">¿No tiene una cuenta? Cree una aquí ></a>
-        </span>
-        <span>
-                <p class="warnings" id="warnings">{{warnings}}</p>
-        </span>
+        <div class="href-item">
+            <a href="register">¿No tiene una cuenta? Cree una aquí</a>
+        </div>
+        <div>
+            <p class="warnings" id="warnings">{{warnings}}</p>
+        </div>
     </form>
 </body>
 </html>

@@ -1,14 +1,16 @@
 * {
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
 }
 
 body{
-    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background: #4AC29A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #BDFFF3, #4AC29A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #BDFFF3, #4AC29A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     background-attachment: fixed;
     background-repeat: no-repeat;
     opacity: .95;
+    font-family: system-ui;
 }
 
 form{
@@ -18,28 +20,27 @@ form{
     margin: auto;
     box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
     padding: 2%;
-    background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+    background-color: #FFFFFF;
     text-align: center;
+}
+
+
+.text-input{
+    background: none;
+    color: #c6c6c6c6;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    width: 100%;
+    border: none;
 }
 
 .tittle_form{
-    margin: 2% auto 10% auto;
+    margin: 2% auto 5% auto;
     text-align: center;
+    font-size: 150%;
 }
 
-.tittle_form h2{
-    font-size: 250%;
-    color: #00ff84 !important;
-}
-
-.input-item {
-    background: #fff;
-    color: #333;
-    /*padding: 14.5px 0px 15px 9px;*/
-    border-radius: 5px;
-}
-
-.input-item .form-input{
+.form-input{
     width: 240px;
     height: 50px;
 
@@ -51,13 +52,18 @@ form{
 
     outline: none;
     border: none;
+    border-bottom: 1px solid;
 
-    border-radius: 0px 5px 5px 0px;
     transition: 0.2s linear;
 }
 .input-submit{
-    background: #B8F2E6;
+    border: none !important;
+    font-weight: bold;
+    background: #4AC29A;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #BDFFF3, #4AC29A);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #BDFFF3, #4AC29A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
 .input-submit:hover{
     transform: translatey(3px);
     box-shadow: none;
@@ -82,5 +88,18 @@ a{
     transition: opacity 0.2s cubic-bezier(0.7, 0, 0.3, 1),color 0.2s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-a:hover{
+.warnings{
+    color: red;
+}
+
+.href-item{
+    margin-top: 20px;
+}
+
+label{
+    font-size: 16px;
+}
+
+input:focus{
+    color: #5E5D5DFF;
 }

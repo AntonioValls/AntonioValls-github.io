@@ -8,11 +8,21 @@
 <body>
     <form action="/verify" method="POST">
         <h1>Configura 2FA</h1>
-        <img name="img_qr" src="{{qr}}">
-        <p>Código 2FA</p>
-        <p>{{warnings}}</p>
-        <input type="text" name="auth_code" id="auth_code">
-        <input type="submit" value="Enviar">
+        <br>
+        <div>
+            <img name="img_qr" src="{{qr}}">
+        </div>
+        <div>
+            <p>Código 2FA</p>
+            <p>{{warnings}}</p>
+        </div>
+        <div class="input-item group">
+            <input type="text" class="form-input text-input" name="auth_code" id="auth_code" placeholder="Código">
+        </div>
+        <br>
+        <div class="input-item">
+            <input type="submit" class="form-input input-submit" value="Enviar">
+        </div>
     </form>
 </body>
 </html>

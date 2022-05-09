@@ -8,30 +8,31 @@
 <body>
     <form action="/register" name="register" id="formRegister" class="formRegister" method="POST">
         <h2 class="tittle_form">CREAR UNA CUENTA</h2>
-        <span class="input-item">
+        <div class="input-item group">
             <p class="warnings" id="userWarnings">{{userWarnings}}</p>
-            <input type="text" class="form-input" id="user" name="user" placeholder="Nombre de usuario">
-        </span>
+            <input type="text" class="form-input text-input" id="user" name="user" placeholder="Usuario">
+        </div>
         <br>
-        <span class="input-item">
+        <div class="input-item group">
             <p class="warnings" id="passwWarnings">{{passwWarnings}}</p>
-            <input type="password" class="form-input" id="passw" name="passw" placeholder="Contraseña">
-        </span>
+            <input type="password" class="form-input text-input" id="passw" name="passw" placeholder="Contraseña">
+        </div>
         <br>
-        <span class="input-item">
+        <div class="input-item">
             <input type="checkbox" name="auth_checkbox" id="authenticator_checkbox" value="true"><strong>2FA</strong>
-        </span>
+        </div>
         <br>
-        <span class="input-item">
+        <div class="input-item">
             <input type="submit" class="form-input input-submit" value="Guardar">
-        </span>
+        </div>
         <br>
-        <span class="href-item">
+        <div class="href-item">
                 <p> ¿Ya tiene una cuenta? <a href="/">¡Inicie sesión!</a></p>
-        </span>
-        <span>
+        </div>
+        <br>
+        <div>
             <p class="warnings" id="warnings">{{warnings}}</p>
-        </span>
+        </div>
     </form>
 </body>
 </html>

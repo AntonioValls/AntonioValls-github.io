@@ -63,7 +63,6 @@ app.post('/register', (req, res) => {
                     })
 
                 }catch (error){
-                    console.log(error)
                     res.status(500).json({message: 'Error generating the secret'})
                 }
             }
@@ -101,17 +100,14 @@ app.post('/verify', (req, res) => {
         });
 
         if (verified){
-            // res.redirect('/page')
+            req.session.verify = true;
             return res.redirect('/page')
         }
         else{
-            // res.json({verified: false})
             res.render('qrGenerator.html', {qr: req.session.qr, warnings: "El código no es correcto"})
-            // res.redirect('/qrGenerator')
         }
     }catch (error){
         res.render('login.html', {warnings: "Error en el usuario"})
-        // res.status(500).json({message: 'Error en el usuario'})
     }
 })
 
@@ -130,22 +126,19 @@ app.post('/verifyCode', (req, res) => {
         });
 
         if (verified){
-            // res.redirect('/page')
+            req.session.verify = true;
             return res.redirect('/page')
         }
         else{
-            // res.json({verified: false})
             res.render('validarCodigo.html', {warnings: "El código no es correcto"})
-            // res.redirect('/qrGenerator')
         }
     }catch (error){
         res.render('login.html', {warnings: "Error en el usuario"})
-        // res.status(500).json({message: 'Error en el usuario'})
     }
 })
 
 app.get('/page', (req, res) => {
-    if(req.session.user){
+    if(req.session.user && req.session.verify){
         return res.render('page.html', {user: req.session.user})
     }
     return res.redirect('/')
@@ -183,7 +176,6 @@ app.post('/login', (req, res) => {
                 res.render('login.html', {warnings: "La contraseña y el usuario no coinciden"})
             }
         }catch (error){
-            console.log(passw + "----> " +cryptoJs.MD5(passw))
             res.render('login.html', {warnings: "El usuario no está registrado en la base de datos"})
             // res.status(500).json({message: 'Usuario no encontrado'})
         }
